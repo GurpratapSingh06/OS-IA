@@ -1,7 +1,7 @@
 # Deadlock Analysis & Resource Allocation Dashboard
 ### Operating Systems IA Activity 2 — Avoidance, Detection, Prevention, and Recovery
 
-[![Deadlock Dashboard CI](https://github.com/your-username/deadlock_dashboard_web/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/deadlock_dashboard_web/actions)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
