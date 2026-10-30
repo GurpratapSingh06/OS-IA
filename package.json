@@ -1,0 +1,25 @@
+{
+  "name": "deadlock-analysis-dashboard",
+  "version": "2.0.0",
+  "description": "Interactive Deadlock Analysis and Resource Allocation Dashboard - Operating Systems Simulation & Analytical Suite",
+  "main": "app.js",
+  "scripts": {
+    "test": "node check.js",
+    "start": "npx serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/deadlock_dashboard_web.git"
+  },
+  "keywords": [
+    "operating-systems",
+    "deadlock-avoidance",
+    "bankers-algorithm",
+    "deadlock-detection",
+    "deadlock-prevention",
+    "resource-allocation",
+    "interactive-simulator"
+  ],
+  "author": "",
+  "license": "MIT"
+}
