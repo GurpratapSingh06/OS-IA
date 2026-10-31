@@ -3,16 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deadlock Analysis & Resource Allocation Dashboard</title>
+  <title>Deadlock Analysis &amp; Resource Allocation Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Sidebar Navigation -->
+  <!-- ======================================================================
+       SIDEBAR NAVIGATION
+       ====================================================================== -->
   <aside class="app-sidebar" id="appSidebar">
     <div class="sidebar-header">
       <div class="brand-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
       </div>
       <div class="brand-text">
         <h1>Deadlock Dashboard</h1>
@@ -22,34 +32,44 @@
 
     <nav class="sidebar-nav">
       <div class="nav-section-title">Core Modules</div>
+
       <button class="nav-item active" data-tab="tab-overview">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         <span>Dashboard Overview</span>
       </button>
+
       <button class="nav-item" data-tab="tab-avoidance">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <span>Deadlock Avoidance</span>
-      </button>
-      <button class="nav-item" data-tab="tab-detection">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <span>Deadlock Detection</span>
-      </button>
-      <button class="nav-item" data-tab="tab-prevention">
-        <svg viewBox="0 0 24 24"><path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"/></svg>
-        <span>Prevention & Recovery</span>
+        <span class="nav-badge nav-badge-blue"></span>
       </button>
 
-      <div class="nav-section-title">Testing & Verification</div>
+      <button class="nav-item" data-tab="tab-detection">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span>Deadlock Detection</span>
+        <span class="nav-badge nav-badge-red"></span>
+      </button>
+
+      <button class="nav-item" data-tab="tab-prevention">
+        <svg viewBox="0 0 24 24"><path d="M18.36 6.64a9 9 0 1 1-12.73 0M12 2v10"/></svg>
+        <span>Prevention &amp; Recovery</span>
+        <span class="nav-badge nav-badge-green"></span>
+      </button>
+
+      <div class="nav-section-title">Testing &amp; Verification</div>
+
       <button class="nav-item" data-tab="tab-tests">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <span>Test Cases & Analysis</span>
+        <span>Test Cases &amp; Analysis</span>
       </button>
+
       <button class="nav-item" data-tab="tab-custom">
         <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         <span>Custom Test Simulator</span>
       </button>
+
       <button class="nav-item" data-tab="tab-ai">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.5 7.5"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         <span>AI Usage Record</span>
       </button>
     </nav>
@@ -59,22 +79,31 @@
         <span class="pulse-dot"></span>
         <span id="sidebarStatusText">System Operational</span>
       </div>
-      <div>Algorithms: Banker's, Graph Detection, Linear Ordering</div>
+      <div class="sidebar-algo-tags">
+        <span class="algo-tag">Banker's</span>
+        <span class="algo-tag">Graph Detection</span>
+        <span class="algo-tag">Linear Ordering</span>
+      </div>
+      <div class="sidebar-version">OS IA Activity 2 &middot; v2.0</div>
     </div>
   </aside>
 
-  <!-- Main Application Content -->
+  <!-- ======================================================================
+       MAIN APPLICATION CONTENT
+       ====================================================================== -->
   <main class="app-main">
-    
-    <!-- Header Bar -->
+
+    <!-- Top Header Bar -->
     <header class="top-header">
       <div class="header-left">
         <button class="menu-toggle-btn" id="menuToggleBtn" title="Toggle Navigation">
-          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
         </button>
         <div>
           <h2 id="currentViewTitle">Dashboard Overview</h2>
-          <div class="view-subtitle" id="currentViewSubtitle">System Health, Resource Allocation & Test Summary</div>
+          <div class="view-subtitle" id="currentViewSubtitle">System Health, Resource Allocation &amp; Test Summary</div>
         </div>
       </div>
       <div class="header-actions">
@@ -87,106 +116,149 @@
 
     <div class="content-wrapper">
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 1: DASHBOARD OVERVIEW
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-overview" class="tab-pane active">
-        
-        <!-- Live System Metrics -->
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">System Overview</h2>
+            <p class="section-desc">Real-time resource allocation state and system health metrics</p>
+          </div>
+        </div>
+
+        <!-- KPI Metric Cards -->
         <div class="metrics-grid">
-          <div class="metric-card">
+          <div class="metric-card" data-accent="blue">
+            <div class="metric-icon metric-icon-blue">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.2 20a7 7 0 0 1 13.6 0"/></svg>
+            </div>
             <span class="metric-label">Active Processes</span>
             <span class="metric-value" id="mTotalProcesses">5</span>
             <span class="metric-footer">Processes P0 to P4</span>
           </div>
-          <div class="metric-card">
+
+          <div class="metric-card" data-accent="cyan">
+            <div class="metric-icon metric-icon-cyan">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
             <span class="metric-label">Resource Types</span>
             <span class="metric-value" id="mTotalResources">3</span>
             <span class="metric-footer">R0 (CPU), R1 (Mem), R2 (Disk)</span>
           </div>
-          <div class="metric-card">
+
+          <div class="metric-card" data-accent="purple">
+            <div class="metric-icon metric-icon-purple">
+              <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
             <span class="metric-label">Available Vector</span>
-            <span class="metric-value" id="mAvailableVec">[1 2 2]</span>
+            <span class="metric-value" id="mAvailableVec" style="font-size:20px; letter-spacing:-0.5px;">[1 2 2]</span>
             <span class="metric-footer">Free resource instances</span>
           </div>
-          <div class="metric-card">
+
+          <div class="metric-card" data-accent="green">
+            <div class="metric-icon metric-icon-green">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
             <span class="metric-label">Safety Status</span>
             <span class="metric-value" id="mSafetyStatus" style="color: var(--color-safe);">SAFE</span>
             <span class="metric-footer">Safe Sequence: P4→P1→P2→P3→P0</span>
           </div>
-          <div class="metric-card">
+
+          <div class="metric-card" data-accent="teal">
+            <div class="metric-icon metric-icon-teal">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
             <span class="metric-label">Predefined Tests</span>
             <span class="metric-value" id="mTestsPassed" style="color: var(--color-safe);">6 / 6</span>
             <span class="metric-footer">Assignment TC1 to TC6 Passed</span>
           </div>
-          <div class="metric-card">
+
+          <div class="metric-card" data-accent="indigo">
+            <div class="metric-icon metric-icon-indigo">
+              <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
             <span class="metric-label">Custom Tests Run</span>
             <span class="metric-value" id="mCustomRunsCount">0</span>
             <span class="metric-footer">User-defined test scenarios</span>
           </div>
         </div>
 
-        <!-- Quick Access Shortcuts -->
+        <!-- Quick Module Shortcuts -->
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
-              <h3>Fast Navigation & Module Shortcuts</h3>
+              <h3>Fast Navigation &amp; Module Shortcuts</h3>
+              <div class="card-subtitle">Jump directly into any simulation module</div>
             </div>
           </div>
           <div class="shortcuts-grid">
             <div class="shortcut-card" onclick="switchTab('tab-avoidance')">
+              <div class="shortcut-icon">🛡️</div>
               <h4>Banker's Avoidance</h4>
               <p>Execute Dijkstra's Safety Algorithm and simulate dynamic resource requests.</p>
             </div>
             <div class="shortcut-card" onclick="switchTab('tab-detection')">
+              <div class="shortcut-icon">🔍</div>
               <h4>Deadlock Detection</h4>
               <p>Analyze multi-instance resource systems and inspect Wait-For Graph cycles.</p>
             </div>
             <div class="shortcut-card" onclick="switchTab('tab-prevention')">
-              <h4>Prevention & Recovery</h4>
+              <div class="shortcut-icon">🔒</div>
+              <h4>Prevention &amp; Recovery</h4>
               <p>Enforce Havender's Linear Resource Ordering and terminate deadlocked processes.</p>
             </div>
             <div class="shortcut-card" onclick="switchTab('tab-tests')">
-              <h4>Test Cases & Analysis</h4>
+              <div class="shortcut-icon">📋</div>
+              <h4>Test Cases &amp; Analysis</h4>
               <p>View individual test cards, run the assignment suite, and export CSV reports.</p>
             </div>
             <div class="shortcut-card" onclick="switchTab('tab-custom')">
+              <div class="shortcut-icon">⚙️</div>
               <h4>Custom Simulator</h4>
-              <p>Build custom $N \times M$ matrix scenarios, test requests, and store history.</p>
+              <p>Build custom N&times;M matrix scenarios, test requests, and store history.</p>
             </div>
           </div>
         </div>
 
-        <!-- Core OS Theoretical Concepts -->
+        <!-- Core OS Concepts -->
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
               <h3>Operating Systems Theoretical Principles</h3>
+              <div class="card-subtitle">Key concepts underpinning deadlock analysis and resource management</div>
             </div>
             <span class="status-badge info">Concept Guide</span>
           </div>
           <div class="concept-grid">
             <div class="concept-card">
+              <span class="concept-icon">🏦</span>
               <h4>Deadlock Avoidance</h4>
               <p>The OS dynamically inspects resource-allocation state before granting requests to ensure circular wait never occurs. Dijkstra's Banker's Algorithm ensures the system remains in a <b>Safe State</b> where at least one execution sequence allows all processes to finish.</p>
             </div>
             <div class="concept-card">
+              <span class="concept-icon">⚖️</span>
               <h4>Safe vs. Unsafe vs. Deadlock</h4>
               <p><b>Safe:</b> A guarantee exists that all processes can terminate. <b>Unsafe:</b> No guarantee exists, but processes are not yet deadlocked. <b>Deadlock:</b> Processes are permanently blocked waiting for resources held by each other.</p>
             </div>
             <div class="concept-card">
+              <span class="concept-icon">⏳</span>
               <h4>Waiting vs. Invalid Request</h4>
               <p>A request exceeding Available resources but within declared Maximum Need is <b>WAITING / DEFERRED</b> (allocation unchanged). A request exceeding declared Need or containing negative numbers is <b>INVALID</b>.</p>
             </div>
             <div class="concept-card">
+              <span class="concept-icon">🔬</span>
               <h4>Detection in Multi-Instance Models</h4>
               <p>In multiple-instance resource systems, a cycle in the Wait-For Graph is <b>necessary but not sufficient</b> for deadlock. Matrix-based reduction with Work and Request vectors provides the definitive determination.</p>
             </div>
             <div class="concept-card">
+              <span class="concept-icon">🛡️</span>
               <h4>Deadlock Prevention</h4>
               <p>Eliminates at least one of the four Coffman conditions (Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait). Havender's linear resource ordering eliminates Circular Wait at the cost of reduced concurrency.</p>
             </div>
             <div class="concept-card">
+              <span class="concept-icon">🔧</span>
               <h4>Deadlock Recovery</h4>
               <p>Breaks an active deadlock through process termination or resource preemption. Terminating a process reclaims its allocated resources, increasing Available resources to let remaining processes proceed.</p>
             </div>
@@ -195,45 +267,53 @@
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 2: DEADLOCK AVOIDANCE (BANKER'S ALGORITHM)
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-avoidance" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">Deadlock Avoidance</h2>
+            <p class="section-desc">Dijkstra's Banker's Algorithm — ensures the system never enters an unsafe state</p>
+          </div>
+        </div>
+
+        <!-- System Configuration -->
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
-              <h3>Banker's Algorithm System Configuration</h3>
+              <h3>Banker's Algorithm — System Configuration</h3>
               <div class="card-subtitle">Job Scheduler Model: R0 (10 CPU cores), R1 (6 Memory blocks), R2 (6 Disk channels)</div>
             </div>
             <div style="display:flex; gap: 8px;">
-              <button class="btn btn-secondary btn-sm" id="a-reset-btn">Reset to Default Example</button>
-              <button class="btn btn-primary btn-sm" id="a-run-btn">Run Safety Algorithm</button>
+              <button class="btn btn-secondary btn-sm" id="a-reset-btn">Reset to Default</button>
+              <button class="btn btn-primary btn-sm" id="a-run-btn">▶ Run Safety Algorithm</button>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="a-n">Processes (N)</label>
+              <label for="a-n" title="Number of concurrent processes competing for resources">Processes (N)</label>
               <input type="number" id="a-n" min="1" max="8" value="5" class="form-control" style="width: 80px;">
             </div>
             <div class="form-group">
-              <label for="a-m">Resource Types (M)</label>
+              <label for="a-m" title="Number of distinct resource types in the system">Resource Types (M)</label>
               <input type="number" id="a-m" min="1" max="5" value="3" class="form-control" style="width: 80px;">
             </div>
             <div class="form-group" style="margin-left: auto; justify-content: flex-end;">
-              <span class="callout" style="margin: 0; padding: 6px 12px; font-size: 12px;">
-                Formula: <b>Need[i][j] = Maximum[i][j] − Allocation[i][j]</b> (Calculated Automatically)
+              <span class="callout" style="margin: 0; padding: 6px 14px; font-size: 12px;">
+                Formula: <b>Need[i][j] = Maximum[i][j] &minus; Allocation[i][j]</b> &nbsp;(Auto-Calculated)
               </span>
             </div>
           </div>
 
-          <!-- Matrices Presentation -->
+          <!-- Matrices -->
           <div class="matrices-row">
             <div class="matrix-block">
               <div class="matrix-block-header">
                 <h4>Allocation Matrix</h4>
-                <span style="font-size: 11px; color: var(--text-muted);">Current Hold</span>
+                <span style="font-size: 11px; color: var(--text-muted);">Currently Held</span>
               </div>
               <div class="matrix-container" id="a-al"></div>
             </div>
@@ -246,7 +326,7 @@
               <div class="matrix-container" id="a-mx"></div>
             </div>
 
-            <div class="matrix-block" style="background-color: var(--bg-card-subtle); border-color: rgba(59, 130, 246, 0.4);">
+            <div class="matrix-block" style="background: var(--bg-need); border-color: rgba(59,130,246,0.3);">
               <div class="matrix-block-header">
                 <h4>Need Matrix</h4>
                 <span class="matrix-calc-tag">Auto-Calculated</span>
@@ -263,16 +343,16 @@
             </div>
           </div>
 
-          <!-- Safety Algorithm Execution Output -->
+          <!-- Safety Algorithm Output -->
           <div id="a-out"></div>
         </div>
 
-        <!-- Resource Request Simulation -->
+        <!-- Resource Request Simulator -->
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
               <h3>Dynamic Resource Request Simulator</h3>
-              <div class="card-subtitle">Simulate incoming requests from processes and verify Banker's Algorithm granting decision</div>
+              <div class="card-subtitle">Simulate incoming requests and verify the Banker's Algorithm granting decision</div>
             </div>
           </div>
 
@@ -283,43 +363,50 @@
             </div>
             <div class="form-group">
               <label for="a-req">Request Vector</label>
-              <input type="text" id="a-req" value="1 1 1" class="form-control" style="width: 140px;" placeholder="e.g. 1 1 1">
+              <input type="text" id="a-req" value="1 1 1" class="form-control" style="width: 160px;" placeholder="e.g. 1 1 1">
             </div>
             <div class="form-group" style="align-self: flex-end;">
               <button class="btn btn-primary" id="a-btn">Evaluate Request</button>
             </div>
           </div>
 
-          <!-- Preset Quick Test Buttons -->
-          <div style="margin: 10px 0 16px; display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="font-size: 12px; font-weight: 600; color: var(--text-muted); align-self: center;">Quick Scenarios:</span>
-            <button class="btn btn-secondary btn-sm" id="btnReqPreset1">P1 requests 1 1 1 (Safe → Granted)</button>
-            <button class="btn btn-secondary btn-sm" id="btnReqPreset2">P2 requests 2 1 0 (Exceeds Available → Waiting)</button>
-            <button class="btn btn-secondary btn-sm" id="btnReqPreset3">P0 requests 1 2 2 (Unsafe State → Denied)</button>
-            <button class="btn btn-secondary btn-sm" id="btnReqPreset4">P4 requests 1 0 0 (Exceeds Need → Invalid)</button>
+          <!-- Quick Scenario Presets -->
+          <div style="margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Quick Scenarios:</span>
+            <button class="btn btn-secondary btn-sm" id="btnReqPreset1">P1 → 1 1 1 (Safe → Granted)</button>
+            <button class="btn btn-secondary btn-sm" id="btnReqPreset2">P2 → 2 1 0 (Exceeds Available → Waiting)</button>
+            <button class="btn btn-secondary btn-sm" id="btnReqPreset3">P0 → 1 2 2 (Unsafe State → Denied)</button>
+            <button class="btn btn-secondary btn-sm" id="btnReqPreset4">P4 → 1 0 0 (Exceeds Need → Invalid)</button>
           </div>
 
-          <!-- Request Output / Decision Panel -->
+          <!-- Request Output -->
           <div id="a-rout"></div>
         </div>
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 3: DEADLOCK DETECTION
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-detection" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">Deadlock Detection</h2>
+            <p class="section-desc">Multi-instance matrix reduction algorithm with Wait-For graph visualization</p>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
-              <h3>Deadlock Detection in Multiple-Instance Resource Systems</h3>
-              <div class="card-subtitle">Detects existing deadlocks using vector reduction algorithm on Allocation, Request and Available</div>
+              <h3>Detection in Multiple-Instance Resource Systems</h3>
+              <div class="card-subtitle">Detects existing deadlocks using vector reduction on Allocation, Request and Available matrices</div>
             </div>
             <div style="display:flex; gap: 8px; flex-wrap: wrap;">
               <button class="btn btn-danger btn-sm" id="d-ex1">Load Example 1 (Deadlock)</button>
               <button class="btn btn-success btn-sm" id="d-ex2">Load Example 2 (Cycle, No Deadlock)</button>
-              <button class="btn btn-primary btn-sm" id="d-run-btn">Run Detection</button>
+              <button class="btn btn-primary btn-sm" id="d-run-btn">▶ Run Detection</button>
             </div>
           </div>
 
@@ -329,11 +416,11 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="d-n">Processes</label>
+              <label for="d-n" title="Number of concurrent processes">Processes</label>
               <input type="number" id="d-n" min="1" max="8" value="4" class="form-control" style="width: 80px;">
             </div>
             <div class="form-group">
-              <label for="d-m">Resource Types</label>
+              <label for="d-m" title="Number of distinct resource types">Resource Types</label>
               <input type="number" id="d-m" min="1" max="5" value="3" class="form-control" style="width: 80px;">
             </div>
           </div>
@@ -371,11 +458,18 @@
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 4: PREVENTION & RECOVERY
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-prevention" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">Prevention &amp; Recovery</h2>
+            <p class="section-desc">Havender's resource ordering policy and process termination for deadlock recovery</p>
+          </div>
+        </div>
+
         <!-- Recovery Card -->
         <div class="card">
           <div class="card-header">
@@ -392,7 +486,7 @@
           <div class="form-row">
             <div class="form-group">
               <label for="r-sel">Select Process to Terminate</label>
-              <select id="r-sel" class="form-control" style="min-width: 140px;"></select>
+              <select id="r-sel" class="form-control" style="min-width: 160px;"></select>
             </div>
             <div class="form-group" style="align-self: flex-end;">
               <button class="btn btn-danger" id="r-btn">Terminate Process &amp; Re-run Detection</button>
@@ -410,26 +504,32 @@
               <div class="card-subtitle">Eliminates Circular Wait by enforcing a strict global resource acquisition order</div>
             </div>
           </div>
-
           <div id="r-prev"></div>
         </div>
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 5: TEST CASES & ANALYTICAL REPORT
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-tests" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">Test Cases &amp; Analysis</h2>
+            <p class="section-desc">OS IA Activity 2 assignment test suite — TC1 through TC6 with analytical results</p>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
               <h3>Assignment Predefined Test Cases (TC1 to TC6)</h3>
-              <div class="card-subtitle">All 6 original test cases preserved exactly according to OS IA Activity 2 specifications</div>
+              <div class="card-subtitle">All 6 original test cases preserved exactly per OS IA Activity 2 specifications</div>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <button class="btn btn-primary btn-sm" id="btnRunAllPredefined">Run All Predefined Tests</button>
-              <button class="btn btn-secondary btn-sm" id="btnExportCSV">Export Analytical Report (CSV)</button>
+              <button class="btn btn-primary btn-sm" id="btnRunAllPredefined">▶ Run All Tests</button>
+              <button class="btn btn-secondary btn-sm" id="btnExportCSV">Export CSV</button>
               <button class="btn btn-secondary btn-sm" id="btnExportJSON">Export JSON</button>
               <button class="btn btn-secondary btn-sm" onclick="window.print()">Print Report</button>
             </div>
@@ -437,11 +537,11 @@
 
           <!-- Individual Test Case Cards -->
           <div class="test-cards-grid" id="testCardsGrid">
-            <!-- Dynamically populated 6 individual test case cards -->
+            <!-- Dynamically populated -->
           </div>
 
-          <!-- Analytical Results Summary Table -->
-          <h4 style="margin: 20px 0 10px; color: #fff;">Assignment Analytical Results Table</h4>
+          <!-- Analytical Results Table -->
+          <h4 style="margin: 20px 0 12px; color: #fff;">Assignment Analytical Results Table</h4>
           <div class="history-table-container">
             <table class="res-table" id="predefinedResultsTable">
               <thead>
@@ -454,13 +554,11 @@
                   <th>Analysis / Conclusion</th>
                 </tr>
               </thead>
-              <tbody id="predefinedResultsTbody">
-                <!-- Populated via JS -->
-              </tbody>
+              <tbody id="predefinedResultsTbody"></tbody>
             </table>
           </div>
 
-          <div style="margin-top: 14px; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between;">
+          <div style="margin-top: 14px; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
             <span id="testReportTimestamp">Report Generated: --</span>
             <span>Regression Suite Status: Verified 100% Pass</span>
           </div>
@@ -490,7 +588,7 @@
                 </tr>
               </thead>
               <tbody id="customResultsTbody">
-                <tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 18px;">No custom scenarios run yet. Launch the Custom Simulator to create user-defined tests.</td></tr>
+                <tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 22px;">No custom scenarios run yet. Launch the Custom Simulator to create user-defined tests.</td></tr>
               </tbody>
             </table>
           </div>
@@ -498,11 +596,18 @@
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 6: CUSTOM TEST SIMULATOR
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-custom" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">Custom Test Simulator</h2>
+            <p class="section-desc">Build and run your own N&times;M matrix scenarios, test requests, and store history</p>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
@@ -510,20 +615,19 @@
               <div class="card-subtitle">Create and execute user-defined scenarios with custom processes, resources, and requests</div>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <button class="btn btn-secondary btn-sm" id="c-load-preset-btn">Load Preset...</button>
+              <button class="btn btn-secondary btn-sm" id="c-load-preset-btn">Load Preset</button>
               <button class="btn btn-secondary btn-sm" id="c-reset-btn">Reset Grid</button>
-              <button class="btn btn-primary btn-sm" id="c-run-btn">Run Safety Algorithm</button>
+              <button class="btn btn-primary btn-sm" id="c-run-btn">▶ Run Safety Algorithm</button>
             </div>
           </div>
 
-          <!-- Configuration & Presets -->
           <div class="form-row">
             <div class="form-group">
-              <label for="c-n">Processes (N)</label>
+              <label for="c-n" title="Number of concurrent processes">Processes (N)</label>
               <input type="number" id="c-n" min="1" max="8" value="4" class="form-control" style="width: 80px;">
             </div>
             <div class="form-group">
-              <label for="c-m">Resource Types (M)</label>
+              <label for="c-m" title="Number of distinct resource types">Resource Types (M)</label>
               <input type="number" id="c-m" min="1" max="6" value="3" class="form-control" style="width: 80px;">
             </div>
             <div class="form-group" style="align-self: flex-end;">
@@ -540,10 +644,10 @@
             </div>
           </div>
 
-          <!-- Real-Time Validation Alert Box -->
+          <!-- Real-Time Validation -->
           <div id="c-validation-alert" style="display: none;"></div>
 
-          <!-- Custom Matrices Row -->
+          <!-- Custom Matrices -->
           <div class="matrices-row">
             <div class="matrix-block">
               <div class="matrix-block-header">
@@ -561,10 +665,10 @@
               <div class="matrix-container" id="c-mx"></div>
             </div>
 
-            <div class="matrix-block" style="background-color: var(--bg-card-subtle); border-color: rgba(59, 130, 246, 0.4);">
+            <div class="matrix-block" style="background: var(--bg-need); border-color: rgba(59,130,246,0.3);">
               <div class="matrix-block-header">
                 <h4>Need Matrix</h4>
-                <span class="matrix-calc-tag">Need = Max − Allocation</span>
+                <span class="matrix-calc-tag">Need = Max &minus; Allocation</span>
               </div>
               <div class="matrix-container" id="c-need-display"></div>
             </div>
@@ -578,7 +682,7 @@
             </div>
           </div>
 
-          <!-- Custom Safety Results Area -->
+          <!-- Custom Safety Results -->
           <div id="c-safety-out"></div>
         </div>
 
@@ -598,7 +702,7 @@
             </div>
             <div class="form-group">
               <label for="c-req">Resource Request Vector (space or comma-separated)</label>
-              <input type="text" id="c-req" class="form-control" style="width: 220px;" placeholder="e.g. 1 0 1">
+              <input type="text" id="c-req" class="form-control" style="width: 240px;" placeholder="e.g. 1 0 1">
             </div>
             <div class="form-group" style="align-self: flex-end;">
               <button class="btn btn-primary" id="c-req-btn">Submit Resource Request</button>
@@ -608,7 +712,7 @@
           <div id="c-req-out"></div>
         </div>
 
-        <!-- Custom Scenario Execution History -->
+        <!-- Custom Scenario History -->
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
@@ -616,7 +720,7 @@
               <div class="card-subtitle">Stored runs from the Custom Test Simulator</div>
             </div>
             <div style="display: flex; gap: 8px;">
-              <button class="btn btn-secondary btn-sm" id="c-export-history-btn">Export Custom History (CSV)</button>
+              <button class="btn btn-secondary btn-sm" id="c-export-history-btn">Export History (CSV)</button>
               <button class="btn btn-danger btn-sm" id="c-clear-history-btn">Clear History</button>
             </div>
           </div>
@@ -636,7 +740,7 @@
                 </tr>
               </thead>
               <tbody id="customHistoryTbody">
-                <tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 16px;">No custom history recorded yet. Run a custom safety check or request simulation above.</td></tr>
+                <tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 22px;">No custom history recorded yet. Run a custom safety check or request simulation above.</td></tr>
               </tbody>
             </table>
           </div>
@@ -644,11 +748,18 @@
 
       </section>
 
-      <!-- ===================================================================
+      <!-- ================================================================
            TAB 7: AI USAGE RECORD
-           =================================================================== -->
+           ================================================================ -->
       <section id="tab-ai" class="tab-pane">
-        
+
+        <div class="section-header">
+          <div class="section-header-left">
+            <h2 class="section-title">AI Usage Record</h2>
+            <p class="section-desc">Transparent documentation of AI tools used during development per academic integrity guidelines</p>
+          </div>
+        </div>
+
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
@@ -683,15 +794,15 @@
             </table>
           </div>
 
-          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center;">
-            <span id="aiSaveNotice" style="font-size: 12px; color: var(--color-safe); display: none;">Record saved to browser storage.</span>
+          <div style="margin-top: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <span id="aiSaveNotice" style="font-size: 12px; color: var(--color-safe); display: none;">✓ Record saved to browser storage.</span>
             <button class="btn btn-secondary btn-sm" onclick="window.print()">Print / Save as PDF</button>
           </div>
         </div>
 
       </section>
 
-    </div>
+    </div><!-- .content-wrapper -->
   </main>
 
   <script src="app.js"></script>
