@@ -315,6 +315,95 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   SIDEBAR TEAM BRANDING (pinned to bottom)
+   -------------------------------------------------------------------------- */
+.sidebar-team {
+  flex-shrink: 0;
+  padding: 0 14px 16px;
+}
+
+.sidebar-team-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
+  margin-bottom: 13px;
+}
+
+.team-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  color: var(--text-dim);
+  margin-bottom: 9px;
+}
+
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 13px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.team-name {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-prn {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  letter-spacing: 0.3px;
+}
+
+.mitaoe-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0 2px;
+}
+
+.mitaoe-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 50%;
+  opacity: 0.92;
+  transition: opacity var(--transition-fast), transform var(--transition-med);
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.mitaoe-logo:hover {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Keep sidebar scrollable but team branding always visible */
+.app-sidebar {
+  /* override the column direction to allow footer pinning */
+}
+
+/* Ensure nav doesn't push team section off-screen */
+.sidebar-nav {
+  /* already flex:1 + overflow-y:auto — team section sits below it */
+  min-height: 0;
+}
+
+/* --------------------------------------------------------------------------
    MAIN AREA
    -------------------------------------------------------------------------- */
 .app-main {
