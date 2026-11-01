@@ -13,10 +13,10 @@ A comprehensive, production-grade web application and technical simulation platf
 
 ## 🌐 Live Demo & Deployment
 
-This project is 100% static (HTML5/CSS3/Vanilla ES6 JS) and requires zero backend server configuration.
+This project is deployed on vercel.
 
-- **GitHub Pages Ready**: Automatically deploys via the included GitHub Actions workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
-- **Direct Local Preview**: Simply open `index.html` in any modern web browser or run `npx serve .`.
+- **URL**: https://deadlock-simulator-chi.vercel.app/
+
 
 ---
 
